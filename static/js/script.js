@@ -1,15 +1,18 @@
 // Pokedex Script Setup
 // "D-Von! Get the tables!"
 
-$(document).ready(function(){
-    let chart;
+// Global variable to store the chart object
+let chart;
 
+$(document).ready(function() {
+        
     // Load initial Pokemon list
     $.ajax({
         url: '/pokemon',
         type: 'GET',
         success: function(pokemonList) {
             displayPokemonList(pokemonList);
+            addPokemonToDropdowns(pokemonList);
         }
     });
 
@@ -41,6 +44,7 @@ $(document).ready(function(){
 
     // Function to display Pokemon details, including chart
     function displayPokemonDetails(pokemon) {
+        $('#pokemon-detail-panel').hide().show("slide", { direction: "right" }, 1000);
         $('#pokemon-name').text(pokemon.name);
         $('#pokemon-type').text(pokemon.type);
         $('#pokemon-description').text(pokemon.description);
@@ -106,4 +110,46 @@ $(document).ready(function(){
         let comparisonText = `${pokemon1.name} has ${pokemon1.stats.hp} HP, while ${pokemon2.name} has ${pokemon2.stats.hp} HP.`;
         $('#comparison-result').text(comparisonText);
     }
+
+    // Error handling for AJAX calls
+    $(document).ajaxError(function() {
+        alert('An error occurred while processing your request. Please try again.');
+    });
+
+    // Add Pokemon to comparison dropdowns
+    function addPokemonToDropdowns(pokemonList) {
+        pokemonList.forEach(pokemon => {
+            $('#pokemon-dropdown-1, #pokemon-dropdown-2').append($('<option>').val(pokemon.name).text(pokemon.name));
+        });
+    }
+
+    // Reset button
+    $('#reset-button').on('click', function() {
+        // Clear search bar
+        $('#search-bar').val('');
+
+        // Clear comparison results
+        $('#comparison-result').text('');
+
+        // Re-render initial Pokemon list
+        $.ajax({
+            url: '/pokemon',
+            type: 'GET',
+            success: function(pokemonList) {
+                displayPokemonList(pokemonList);
+                addPokemonToDropdowns(pokemonList);
+            }
+        });
+    });
+
+    // Click event for the favorite button
+    $('#favorite-button').on('click', function() {
+        let pokemonName = $('#pokemon-name').text();
+        if(!$('#favorites-list').find(`li:contains(${pokemonName})`).length) {
+            $('#favorites-list').append($('<li>').text(pokemonName));
+        } else {
+            alert('This Pokemon is already in your favorites!');
+        }
+    });
 });
+
