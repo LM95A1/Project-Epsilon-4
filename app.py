@@ -105,7 +105,7 @@ def home():
     conn.close()
 
     # Render home page with all Pokemon data
-    return render_template('index.html', pokemon=pokemon_all)
+    #return render_template('index.html', pokemon=pokemon_all)
 
 @app.route('/pokemon/<name>')
 def pokemon(name):
@@ -128,7 +128,7 @@ def pokemon(name):
     conn.close()
 
     # Render Pokemon page with specific Pokemon data
-    return render_template('pokemon.html', pokemon=pokemon)
+    #return render_template('pokemon.html', pokemon=pokemon)
 
 
 @app.route('/pokemon/type/<type>')
@@ -152,7 +152,7 @@ def type(type):
     conn.close()
 
     # Render type page with specific Pokemon data
-    return render_template('type.html', pokemon=pokemon_by_type)
+    #return render_template('type.html', pokemon=pokemon_by_type)
 
 
 if __name__ == '__main__':

@@ -4,23 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Antares Pokedex Interface</title>
-
+​
     <!-- Link to the CSS stylesheet -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="static/css/style.css">
     <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
     <header class="bg-info text-white p-4">
-        <h1>
-            <i class="fas fa-pokeball mr-2"></i>
-            Welcome to the Pokedex!
-        </h1>
+        <h1><i class="fa fa-paw"></i> Welcome to the Pokedex!</h1>
     </header>
-
-
+​
     <main class="container mt-4">
         <!-- Search bar -->
         <div class="input-group mb-3">
@@ -29,18 +25,18 @@
             </div>
             <input type="text" class="form-control" id="search-bar" placeholder="Search for a Pokemon...">
         </div>
-
+​
         <!-- Dropdown menu for filtering by type -->
         <select class="custom-select mb-3" id="type-dropdown">
             <option selected>Filter by type...</option>
             <!-- Option values will be filled in by JavaScript -->
         </select>
-
+​
         <!-- List of Pokemon -->
         <ul class="list-group" id="pokemon-list">
             <!-- List items will be filled in by JavaScript -->
         </ul>
-
+​
         <!-- Section for displaying Pokemon details -->
         <section id="pokemon-details" class="mt-4">
             <h2 id="pokemon-name"></h2>
@@ -53,7 +49,7 @@
             </div>
             <canvas id="stat-chart"></canvas>
         </section>
-
+​       
         <!-- Section for comparing two Pokemon -->
         <section id="pokemon-comparison" class="mt-4">
             <h2>Compare Pokemon</h2>
@@ -64,21 +60,47 @@
             </div>
             <p id="comparison-result" class="mt-2"></p>
         </section>
-
+​
         <!-- Reset button -->
         <button class="btn btn-secondary mt-4" id="reset-button">Reset</button>
     </main>
-</body>
-</html>
-
+​
+    <!-- Link to the JavaScript file -->
+    <script src="C:\Users\debbi\OneDrive\Documents\GitHub\Project-Epsilon-4\static\js\script.js"></script>
     <!-- Bootstrap JS and its dependencies -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-    <!-- Full version of jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <!-- Link to the JavaScript file -->
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
