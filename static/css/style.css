@@ -1,0 +1,116 @@
+/* Pokedex Style Setup */
+/* "Doll 'er up for me, yeah?" */
+
+/* General styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #B9121B;
+    color: #FFFFFF;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.5s;
+}
+
+body.dark-mode {
+    background-color: #4A4A4A;
+    transition: background-color 0.5s;
+}
+
+/* Panel styles */
+#pokemon-list-panel {
+    float: left;
+    width: 30%;
+    height: 100vh;
+    overflow: auto;
+    background-color: #E5E5E5;
+    padding: 20px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease-in-out;
+}
+
+#pokemon-detail-panel {
+    float: right;
+    width: 70%;
+    height: 100vh;
+    background-color: #4A4A4A;
+    padding: 20px;
+    box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease-in-out;
+}
+
+/* Clear float after the panels */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Pokemon name styles */
+.pokemon-name {
+    font-size: 1.5em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Button styles */
+button {
+    background-color: #4A4A4A;
+    color: #FFFFFF;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 2px 2px;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #777777;
+    transform: scale(1.1);
+}
+
+/* Image style */
+#pokemon-image {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Animation style */
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.fade-in {
+    animation-name: fadeIn;
+    animation-duration: 1s;
+}
+
+/* Transition for list items */
+.pokemon-list-item {
+    transition: all 0.3s ease-in-out;
+}
+
+.pokemon-list-item:hover {
+    transform: scale(1.05);
+    background-color: #B9121B;
+    color: #FFFFFF;
+}
+
+/* Dark Mode switch */
+.switch {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* Header text color */
+header h1 {
+    color: #FFFFFF;
+}
