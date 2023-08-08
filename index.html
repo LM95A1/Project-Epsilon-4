@@ -1,85 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta Information -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Antares Pokedex Interface</title>
-​
-    <!-- Link to the CSS stylesheet -->
+
+    <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="static/css/style.css">
-    <!-- Bootstrap CSS -->
+
+    <!-- Bootstrap CSS for Styling -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
+
+    <!-- Font Awesome for Icons -->
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
-    <header class="bg-info text-white p-4">
+    <!-- Header Section -->
+    <header class="bg-danger text-white p-4">
         <h1><i class="fa fa-paw"></i> Welcome to the Pokedex!</h1>
     </header>
-​
-    <main class="container mt-4">
-        <!-- Search bar -->
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-search"></i></span>
-            </div>
-            <input type="text" class="form-control" id="search-bar" placeholder="Search for a Pokemon...">
-        </div>
-​
-        <!-- Dropdown menu for filtering by type -->
-        <select class="custom-select mb-3" id="type-dropdown">
-            <option selected>Filter by type...</option>
-            <!-- Option values will be filled in by JavaScript -->
-        </select>
-​
-        <!-- List of Pokemon -->
-        <ul class="list-group" id="pokemon-list">
-            <!-- List items will be filled in by JavaScript -->
-        </ul>
-​
-        <!-- Section for displaying Pokemon details -->
-        <section id="pokemon-details" class="mt-4">
-            <h2 id="pokemon-name"></h2>
-            <div class="media">
-                <img class="mr-3" id="pokemon-image" src="" alt="">
-                <div class="media-body">
-                    <p id="pokemon-type"></p>
-                    <p id="pokemon-description"></p>
-                </div>
-            </div>
-            <canvas id="stat-chart"></canvas>
-        </section>
-​       
-        <!-- Section for comparing two Pokemon -->
-            <section id="pokemon-comparison" class="mt-4">
-            <h2>Compare Pokemon</h2>
-            <div class="d-flex">
 
-                <!-- Add two dropdowns with appropriate IDs -->
-                <select id="pokemon-dropdown-1"></select>
-                <select id="pokemon-dropdown-2"></select>
-                <button class="btn btn-primary" id="compare-button">Compare</button>
+    <!-- Main Content Container -->
+    <main class="container mt-4">
+        <!-- Search and Filter Section -->
+        <div class="card p-4 mb-4">
+            <!-- Search Bar -->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-search"></i></span>
+                </div>
+                <input type="text" class="form-control" id="search-bar" aria-label="Search for a Pokemon" placeholder="Search for a Pokemon...">
             </div>
-            <p id="comparison-result" class="mt-2"></p>
-        </section>
-​
-        <!-- Reset button -->
+            <!-- Filter Dropdown -->
+            <select class="custom-select mb-3" id="type-dropdown" aria-label="Select a Pokemon">
+                <option selected>Select a Pokemon...</option>
+            </select>
+            <!-- List of Pokemon -->
+            <ul class="list-group" id="pokemon-list"></ul>
+        </div>
+
+        <!-- Pokemon Details Section -->
+        <div class="card p-4 mb-4">
+            <section id="pokemon-details">
+                <h2 id="pokemon-name"></h2>
+                <!-- Pokemon Image and Description -->
+                <div class="media">
+                    <img class="mr-3" id="pokemon-image" src="" alt="">
+                    <div class="media-body">
+                        <p id="pokemon-type"></p>
+                        <p id="pokemon-description"></p>
+                    </div>
+                </div>
+                <!-- Pokemon Stats Chart -->
+                <canvas id="stat-chart"></canvas>
+            </section>
+        </div>
+
+        <!-- Pokemon Comparison Section -->
+        <div class="card p-4 mb-4">
+            <section id="pokemon-comparison">
+                <h2>Compare Pokemon</h2>
+                <!-- Dropdowns for Selecting Pokemon to Compare -->
+                <div class="d-flex">
+                    <select class="custom-select mr-2" id="pokemon-dropdown-1"></select>
+                    <select class="custom-select mr-2" id="pokemon-dropdown-2"></select>
+                    <button class="btn btn-primary" id="compare-button">Compare</button>
+                </div>
+                <!-- Comparison Result -->
+                <p id="comparison-result" class="mt-2"></p>
+            </section>
+        </div>
+
+        <!-- Reset Button -->
         <button class="btn btn-secondary mt-4" id="reset-button">Reset</button>
     </main>
-​
-    <!-- Link to the JavaScript file -->
-    <script src="C:\Users\debbi\OneDrive\Documents\GitHub\Project-Epsilon-4\static\js\script.js"></script>
-    <!-- Bootstrap JS and its dependencies -->
+
+    <!-- Bootstrap JS and its dependencies for interactivity -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <!-- Add this script tag to include Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <!-- Link to Custom JavaScript File -->
+    <script src="static/js/script.js"></script>
 </body>
 </html>
-
-
 
 
 

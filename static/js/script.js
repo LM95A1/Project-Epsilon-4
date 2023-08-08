@@ -1,170 +1,129 @@
+// Function to fetch Pokemon data from a local JSON file
+const fetchPokemonData = () => {
+    fetch('static/data/pokemon.json')
+      .then(response => response.json())
+      .then(data => {
+        populatePokemonList(Object.values(data));
+        populatePokemonDropdown(Object.values(data));
+      })
+      .catch(error => console.error('Error fetching Pokemon data:', error));
+  };
   
-// async function fetchData() {
-//     try {
-//       const response = await fetch('http://localhost:8000/static/data/pokemon.json');
-//       const data = await response.json();
-//       return data;
-//     } catch (error) {
-//       console.error('Error fetching JSON data:', error);
-//       throw error;
-//     }
-//   }
-  
-//   async function processJSONData() {
-//     try {
-//       const jsonData = await fetchData();
-//       if (jsonData) {
-//         // Use the 'jsonData' variable containing the parsed JSON data here
-//         //console.log(jsonData);
-  
-//         // Get the keys of the JSON object
-//         const keys = Object.keys(jsonData);
-  
-//         console.log(keys);
-//         // Add the pokemon names to drop down number 1
-//         const dropdown1 = document.getElementById('pokemon-dropdown-1');
-//         const dropdown2 = document.getElementById('pokemon-dropdown-2');
-  
-//         // Clear existing options in the dropdowns
-//         dropdown1.innerHTML = '';
-//         dropdown2.innerHTML = '';
-  
-//         // Create and add options to the dropdowns
-//         keys.forEach((key) => {
-//           const option1 = document.createElement('option');
-//           option1.value = key;
-//           option1.textContent = key;
-//           dropdown1.appendChild(option1);
-  
-//           const option2 = document.createElement('option');
-//           option2.value = key;
-//           option2.textContent = key;
-//           dropdown2.appendChild(option2);
-//         });
-  
-//         // Perform any further operations with the JSON data here
-  
-//         return jsonData;
-//       }
-//     } catch (error) {
-//       // Handle errors from fetchData() here
-//       console.error('Error processing JSON data:', error);
-//       throw error;
-//     }
-//   }
-  
-//   function comparePokemon() {
-//     const dropdown1 = document.getElementById('pokemon-dropdown-1');
-//     const dropdown2 = document.getElementById('pokemon-dropdown-2');
-  
-//     const selectedPokemon1 = dropdown1.value;
-//     const selectedPokemon2 = dropdown2.value;
-  
-//     if (selectedPokemon1 === selectedPokemon2) {
-//       console.log('The same Pokemon is selected in both dropdowns:', selectedPokemon1);
-//     } else {
-//       console.log('Different Pokemon selected in each dropdown:');
-//       console.log('Dropdown 1:', selectedPokemon1);
-//       console.log('Dropdown 2:', selectedPokemon2);
-//     }
-//   }
-
-//   // Call the function to start fetching and processing the JSON data
-//   processJSONData()
-//     .then((jsonData) => {
-//       // You can use the jsonData variable here or do further processing
-//       console.log('JSON Data:', jsonData);
-//     })
-//     .catch((error) => {
-//       console.error('Error processing JSON data:', error);
-//     });
-
-
-async function fetchData() {
-    try {
-      const response = await fetch('http://localhost:8000/static/data/pokemon.json');
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error('Error fetching JSON data:', error);
-      throw error;
-    }
-  }
-  
-  async function processJSONData() {
-    try {
-      const jsonData = await fetchData();
-      if (jsonData) {
-        // Use the 'jsonData' variable containing the parsed JSON data here
-        //console.log(jsonData);
-  
-        // Get the keys of the JSON object
-        const keys = Object.keys(jsonData);
-  
-        console.log(keys);
-        // Add the pokemon names to drop down number 1
-        const dropdown1 = document.getElementById('pokemon-dropdown-1');
-        const dropdown2 = document.getElementById('pokemon-dropdown-2');
-  
-        // Clear existing options in the dropdowns
-        dropdown1.innerHTML = '';
-        dropdown2.innerHTML = '';
-  
-        // Create and add options to the dropdowns
-        keys.forEach((key) => {
-          const option1 = document.createElement('option');
-          option1.value = key;
-          option1.textContent = key;
-          dropdown1.appendChild(option1);
-  
-          const option2 = document.createElement('option');
-          option2.value = key;
-          option2.textContent = key;
-          dropdown2.appendChild(option2);
-        });
-  
-        // Add event listeners to both dropdowns to handle comparison
-        dropdown1.addEventListener('change', () => {
-          comparePokemons();
-        });
-  
-        dropdown2.addEventListener('change', () => {
-          comparePokemons();
-        });
-  
-        // Perform any further operations with the JSON data here
-  
-        return jsonData;
-      }
-    } catch (error) {
-      // Handle errors from fetchData() here
-      console.error('Error processing JSON data:', error);
-      throw error;
-    }
-  }
-  
-  // Function to compare the selected Pokémon in both dropdowns and log results in the bar chart
-  function comparePokemons() {
-    const dropdown1 = document.getElementById('pokemon-dropdown-1');
-    const dropdown2 = document.getElementById('pokemon-dropdown-2');
-  
-    const selectedPokemon1 = dropdown1.value;
-    const selectedPokemon2 = dropdown2.value;
-  
-    // Your comparison logic goes here
-  
-    // For demonstration purposes, we'll just log the selected Pokémon names
-    console.log('Selected Pokémon 1:', selectedPokemon1);
-    console.log('Selected Pokémon 2:', selectedPokemon2);
-  }
-  
-  // Call the function to start fetching and processing the JSON data
-  processJSONData()
-    .then((jsonData) => {
-      // You can use the jsonData variable here or do further processing
-      console.log('JSON Data:', jsonData);
-    })
-    .catch((error) => {
-      console.error('Error processing JSON data:', error);
+  // Function to populate the Pokemon list
+  const populatePokemonList = (pokemons) => {
+    const pokemonList = document.getElementById('pokemon-list');
+    // Iterate through the Pokemon data and create list items
+    pokemons.forEach(pokemon => {
+      const listItem = document.createElement('li');
+      listItem.textContent = pokemon.name;
+      listItem.addEventListener('click', () => displayPokemonDetails(pokemon));
+      pokemonList.appendChild(listItem);
     });
+  };
+  
+  // Function to populate the Pokemon dropdown
+  const populatePokemonDropdown = (pokemons) => {
+    const dropdown = document.getElementById('type-dropdown'); // Adjust the ID to match your dropdown
+    pokemons.forEach(pokemon => {
+      const option = document.createElement('option');
+      option.value = pokemon.name;
+      option.textContent = pokemon.name;
+      dropdown.appendChild(option);
+    });
+  };
+  
+  // Function to filter Pokemon by name from the search bar
+  const filterPokemonByName = () => {
+    const searchBar = document.getElementById('search-bar').value.toLowerCase();
+    fetch('static/data/pokemon.json')
+      .then(response => response.json())
+      .then(data => {
+        const pokemons = Object.values(data);
+        const filteredPokemon = pokemons.find(p => p.name.toLowerCase() === searchBar);
+        if (filteredPokemon) {
+          displayPokemonDetails(filteredPokemon);
+        }
+      })
+      .catch(error => console.error('Error fetching Pokemon data:', error));
+  };
+  
+  // Function to display Pokemon details including the radar chart
+  const displayPokemonDetails = (pokemon) => {
+    // Display details
+    document.getElementById('pokemon-name').textContent = pokemon.name;
+    document.getElementById('pokemon-image').src = pokemon.image_url;
+    const pokemonType = document.getElementById('pokemon-type');
+    pokemonType.innerHTML = '';
+    pokemon.types.forEach(type => {
+      pokemonType.innerHTML += `${type.name} `;
+    });
+    const pokemonDescription = document.getElementById('pokemon-description');
+    pokemonDescription.innerHTML = '';
+    pokemon.stats.forEach(stat => {
+      pokemonDescription.innerHTML += `${stat.name}: ${stat.base_stat}<br>`;
+    });
+  
+    // Radar Chart configuration
+    const data = {
+      labels: ['HP', 'Attack', 'Defense', 'Special Attack', 'Special Defense', 'Speed'],
+      datasets: [{
+        label: pokemon.name,
+        data: pokemon.stats.map(stat => stat.base_stat),
+        backgroundColor: 'rgba(255, 0, 0, 0.2)',
+        borderColor: 'rgba(255, 0, 0, 1)',
+        borderWidth: 3
+      }]
+    };
+  
+    const config = {
+      type: 'radar',
+      data: data,
+      options: {
+        elements: {
+          line: {
+            borderWidth: 3
+          }
+        }
+      },
+    };
+  
+    // Update or create the chart
+    const ctx = document.getElementById('stat-chart').getContext('2d');
+    if (window.chart) {
+      window.chart.destroy(); // Destroy existing chart if there is one
+    }
+    window.chart = new Chart(ctx, config);
+  
+    // Link to Pokemon's official website
+    const pokemonLink = document.createElement('a');
+    pokemonLink.href = pokemon.pokemon_url;
+    pokemonLink.textContent = "Visit Pokémon's official website";
+    document.getElementById('pokemon-details').appendChild(pokemonLink);
+  };
+  
+  // Event listener for the dropdown selection
+  document.getElementById('type-dropdown').addEventListener('change', (event) => {
+    const selectedPokemonName = event.target.value;
+    fetch('static/data/pokemon.json')
+      .then(response => response.json())
+      .then(data => displayPokemonDetails(data[selectedPokemonName]))
+      .catch(error => console.error('Error fetching Pokemon data:', error));
+  });
+  
+  // Event listener for the search bar
+  document.getElementById('search-bar').addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+      filterPokemonByName();
+    }
+  });
+  
+  // Event listener for the reset button
+  document.getElementById('reset-button').addEventListener('click', () => {
+    // Reset the interface to its initial state
+    document.getElementById('pokemon-list').innerHTML = '';
+    fetchPokemonData();
+  });
+  
+  // Fetch the initial Pokemon data when the page loads
+  fetchPokemonData();
   
