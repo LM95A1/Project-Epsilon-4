@@ -243,8 +243,6 @@ searchInput.addEventListener('input', () => {
 
 // update pokemon details 
 
-// Assume you have retrieved the Pokémon data and have height, weight, and dynamicListData available
-
 const pokemonHeightElement = document.getElementById('pokemon-height');
 const pokemonWeightElement = document.getElementById('pokemon-weight');
 const dynamicListElement = document.getElementById('dynamic-list');
@@ -261,10 +259,6 @@ searchInput.addEventListener('keydown', event => {
       weight = jsonData[searchInput.value]['weight'];
       dynamicListData = jsonData[searchInput.value]['abilities'];
       
-      //console.log(height);
-      //console.log(weight);
-      //console.log(dynamicListData);
-
       // Set height and weight values
       pokemonHeightElement.textContent = `${height} m`;
       pokemonWeightElement.textContent = `${weight} kg`;
@@ -278,17 +272,6 @@ searchInput.addEventListener('keydown', event => {
   }
 });
  
-// Set height and weight values
-//pokemonHeightElement.textContent = `${height} m`;
-//pokemonWeightElement.textContent = `${weight} kg`;
-
-// Populate the dynamic list
-// dynamicListData.forEach(item => {
-//     const li = document.createElement('li');
-//     li.textContent = item.name;
-//     dynamicListElement.appendChild(li);
-// });
-
 // Hide autocomplete list when clicked outside
 document.addEventListener('click', event => {
   if (!searchInput.contains(event.target)) {
