@@ -11,10 +11,13 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- =sourcing d3 scripts -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
     <header class="bg-info text-white p-4">
-        <h1><i class="fa fa-paw"></i> Welcome to the Pokedex!</h1>
+        <h1><i class="fa fa-paw"></i> Welcome to the Pokeguide!</h1>
     </header>
 ​
     <main class="container mt-4">
@@ -24,32 +27,29 @@
                 <span class="input-group-text"><i class="fa fa-search"></i></span>
             </div>
             <input type="text" class="form-control" id="search-bar" placeholder="Search for a Pokemon...">
+            <div class="autocomplete-dropdown" id="autocomplete-list"></div>
         </div>
-​
-        <!-- Dropdown menu for filtering by type -->
-        <select class="custom-select mb-3" id="type-dropdown">
-            <option selected>Filter by type...</option>
-            <!-- Option values will be filled in by JavaScript -->
-        </select>
-​
-        <!-- List of Pokemon -->
-        <ul class="list-group" id="pokemon-list">
-            <!-- List items will be filled in by JavaScript -->
-        </ul>
+
 ​
         <!-- Section for displaying Pokemon details -->
         <section id="pokemon-details" class="mt-4">
-            <h2 id="pokemon-name"></h2>
-            <div class="media">
-                <img class="mr-3" id="pokemon-image" src="" alt="">
-                <div class="media-body">
-                    <p id="pokemon-type"></p>
-                    <p id="pokemon-description"></p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Height and Weight</h2>
+                        <ul>
+                            <li><strong>Height:</strong> <span id="pokemon-height"></span></li>
+                            <li><strong>Weight:</strong> <span id="pokemon-weight"></span></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h2>Abilities</h2>
+                        <ul id="dynamic-list"></ul>
+                    </div>
                 </div>
             </div>
-            <canvas id="stat-chart"></canvas>
         </section>
-​       
+        
         <!-- Section for comparing two Pokemon -->
             <section id="pokemon-comparison" class="mt-4">
             <h2>Compare Pokemon</h2>
@@ -62,9 +62,26 @@
             </div>
             <p id="comparison-result" class="mt-2"></p>
         </section>
-​
-        <!-- Reset button -->
+
+        <!-- Section for Pokemon barchart -->
+        <div id="pokemon-barchart" class="mt-4">
+            <div class="d-flex">
+                <div class="chart-container">
+                    <img id="pokemon-image1" src="">
+                    <div id="bar-chart1"></div>
+                </div>
+                <div class="chart-container">
+                    <img id="pokemon-image2" src="">
+                    <div id="bar-chart2"></div>
+                </div>
+            </div>
+            <p id="bar-result" class="mt-2"></p>
+        </div>
+       
+​        <!-- Reset button -->
         <button class="btn btn-secondary mt-4" id="reset-button">Reset</button>
+
+
     </main>
 ​
     <!-- Link to the JavaScript file -->
@@ -74,9 +91,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!-- Add this script tag to include Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-</body>
+    <!-- script src="https://cdn.jsdelivr.net/npm/chart.js"></script> --> 
+   
+  </body>
 </html>
 
 
