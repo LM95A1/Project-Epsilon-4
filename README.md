@@ -1,78 +1,46 @@
-# PokeStat Guide Project
+# Project Epsilon 4 - PokeStats Interactive Guide
+*Project Three Repository for Group Four, designated codename Epsilon Four*
 
-## PokeStat Guide Interface
 
-The Pokedex Interface is a web application that allows users to browse and explore information about various Pokemon species. It provides features such as searching for specific Pokemon, filtering by type, comparing Pokemon, and displaying detailed information about individual Pokemon.
+## Background
+Upon assignment of the project's requirements, we set out to create a dashboard sourced from a ***JSON*** file containing Pokemon data. The dashboard would be a web application that would allow users to search for Pokemon and display their stats, types, and abilities, along with a stats comparison feature. It is essentially a stats-centered Pokedex for competitive team building in the Pokemon games.
 
-# Pokedex Database Generator and Flask Web Application
+## Component Breakdown
+Though the core of the project consists of the ***HTML***, ***CSS***, and ***JavaScript*** files, this section will cover every component of the project, listed in the following subcategories:
+* *[HTML](#HTML)*
+* *[CSS](#CSS)*
+* *[JavaScript](#JavaScript)*
+* *[JSON](#JSON)*
+* *[Jupyter Notebook](#Jupyter)*
+* *[SQLite](#SQLite)*
+* *[Directories](#Directories)*
 
-This README provides an overview and instructions for setting up a Pokedex Database Generator using SQLite and Flask. The generator populates a database with Pokemon data from a JSON file and provides a web application to interact with the data.
+#### HTML
+The `index.html` file serves as the main structure for the Pokémon statistics guide. The page is split into distinct sections, including a welcome header, a search bar, a detailed Pokémon view with sprites and stats, a comparison section, and a footer. The visuals are enhanced with ***Bootstrap 4.3.1*** for responsive design and ***Font Awesome 4.7.0*** for icons. Interactive charts are enabled by integrating ***Chart.js***, ***D3.js***, and ***Plotly*** libraries, providing detailed graphical representations of Pokémon data. Additionally, ***jQuery***, ***Popper.js***, and ***Bootstrap's JS*** are utilized to add interactivity to the page. This unique combo of libraries makes for an interactive and visually appealing Pokémon guide that adapts to various screen sizes.
 
-## Pokedex Database Generator
+#### CSS
+The `style.css` file provides the custom styling that brings the Pokémon statistics guide to life. It defines the specific layout, colors, typography, and transitions that align with the Pokémon theme. In combination with **Bootstrap 4.3.1**, the CSS ensures a sleek and responsive user interface across various devices. Whether it's the fancy fonts, Pokémon-specific icons, or dynamic charts, the ***CSS*** works in unison with the ***HTML*** and ***JavaScript*** to create a visually engaging and intuitive experience for Pokémon enthusiasts. From the Pokeball buttons to the dragon icons, every pixel is crafted to immerse users in the Pokémon world.
 
-### Dependencies
+#### JavaScript
+The `script.js` file is the backbone of the Pokémon statistics guide. It contains the code that enables the interactive features of the page, including the search bar, the Pokémon comparison, and the charts. The ***JavaScript*** is powered by ***D3.js***, ***Plotly***, and ***Chart.js*** libraries, which are used to create the interactive charts and graphs. The ***JavaScript*** also utilizes ***jQuery*** and ***Bootstrap's JS*** to add interactivity to the page. The ***JavaScript*** is the glue that holds the page together, allowing users to search for Pokémon, compare their stats, and view their data in a variety of charts.
 
-The Pokedex Database Generator script requires the following dependencies:
+#### JSON
+The `pokemon.json` file is the source of the Pokémon data. It contains the data for 890 Pokémon (Generation 1 to 8), including their names, types, abilities, and stats. The ***JSON's*** data is sourced from [this GitHub repository](https://github.com/DetainedDeveloper/Pokedex/tree/master), which itself was sourced from webscraping. The ***JSON*** is parsed and filtered using ***Python*** in the ***Jupyter Notebook***, and the resulting data is stored in a ***SQLite*** database. The ***JSON*** is the foundation of the project, providing the data that is used to create the Pokémon statistics guide.
 
-- Python 3
-- SQLite3
-- pandas
+#### Jupyter
+The `databook.ipynb` file is the ***Jupyter Notebook*** that parses and filters the ***JSON*** data. It utilizes ***Python*** and ***Pandas*** to read the ***JSON*** file and store the data in a ***SQLite*** database. The ***Jupyter Notebook*** is the first step in the data pipeline, taking the raw ***JSON*** data and converting it into a ***SQLite*** database that can be accessed by the ***JavaScript***. The ***Jupyter Notebook*** is the first step in the data pipeline, taking the raw ***JSON*** data and converting it into a ***SQLite*** database as per the assignment requirements.
 
-### Database Setup
+#### SQLite
+The `pokedex.db` file is the ***SQLite*** database that stores the Pokémon data. It contains the data for 890 Pokémon (Generation 1 to 8), including their names, types, abilities, and stats. The ***SQLite*** database is created by the ***Jupyter Notebook***, the process of which is described above.
 
-1. Create a new SQLite database named `pokedex.db`.
-2. Run the provided code snippet from the "Pokedex Database Generator" section to create tables for Pokemon, Abilities, Types, and Stats, and populate the database with data from the `pokemon.json` file.
+#### Directories
+The directories are as follows:
+* `master` - Contains this `README.md`, `index.html`, `databook.ipynb`, `pokedex.db`, and the `static` directory.
+* `static` - Contains the `css`, `data`, `icons`, and `js` directories.
+* `css` - Contains the `style.css` file.
+* `data` - Contains the `pokemon.json` file.
+* `icons` - Contains all the image files used in this project.
+* `js` - Contains the `script.js` file.
 
-### Data Loading
-
-1. Load Pokemon data from the `pokemon.json` file into the SQLite database using the script provided in the "Pokedex Database Generator" section.
-
-### Querying the Database
-
-You can query the database using SQL commands or pandas queries. Sample code is provided in the script to load data from the database into pandas DataFrames.
-
-## Flask Web Application
-
-### Setting Up Flask
-
-1. Install Flask using `pip install Flask`.
-2. Use the provided code snippets from the "Flask Web Application" section to set up routes and endpoints for your web application.
-
-### Routes and Endpoints
-
-- `/init_db`: Initializes the SQLite database with Pokemon data.
-- `/`: Home page route that displays Pokemon data.
-- `/pokemon/<name>`: Route to display specific Pokemon data.
-- `/pokemon/type/<type>`: Route to display Pokemon of a specific type.
-
-### Running the Web Application
-
-1. Run the Flask application using `python app.py` in the terminal.
-2. Access the web application by opening a web browser and navigating to `http://localhost:5000`.
-
-## CORS-Enabled File Server
-
-The CORS-Enabled File Server script uses the `http.server` module to serve files from a directory with CORS headers.
-
-### Usage
-
-1. Place the `cors_file_server.py` script in the directory containing the files you want to serve.
-2. Run the script using `python cors_file_server.py`.
-3. Access the served files by navigating to `http://localhost:8000` in a web browser.
-
-### Configuration
-
-You can configure the CORS-Enabled File Server script by editing the `CORSRequestHandler` class to modify CORS headers.
-
-### Access-Control-Allow-Origin Header
-
-By default, the server adds the `Access-Control-Allow-Origin` header with a value of `*`. Customize it to restrict access to specific origins.
-
-## Authors
-
-Debbie Kabir
-Elias Hagos
-Lester Molinares
-Surender Raman
-08/09/2023
----
+## Usage
+This webpage is hosted on ***GitHub Pages*** and can be accessed [here](https://LM95A1.github.io/Project-Epsilon-4). The webpage can also be accessed locally by cloning this repository and opening the `index.html` file and utilizing ***VS Code's Live Server*** extension.
