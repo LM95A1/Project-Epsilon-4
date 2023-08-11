@@ -171,7 +171,7 @@ searchInput.addEventListener('input', () => {
 
   autocompleteList.innerHTML = '';
   matchedPokemons.forEach(pokemon => {
-    const originalPokemonName = pokemon; // Original name casing
+    const originalPokemonName = pokemon.toLowerCase(); // Original name casing
     const option = document.createElement('div');
     option.textContent = pokemon;
     option.classList.add('autocomplete-option');
@@ -220,7 +220,7 @@ searchInput.addEventListener('input', () => {
 // Enable or disable Enter key functionality for search input
 searchInput.addEventListener('keyup', (event) => {
   if (event.key === 'Enter') {
-    const originalPokemonName = searchInput.value; // Get current value
+    const originalPokemonName = searchInput.value.toLowerCase(); // Get current value
     searchInput.value = ''; // Clear input
     autocompleteList.innerHTML = ''; // Clear suggestions
     addImage(originalPokemonName.toLowerCase(), 'pokemon-sprite'); // Load image
@@ -238,17 +238,19 @@ const pokemonTypesElement = document.getElementById('pokemon-types'); // To disp
 // Event listener for Enter key to display data
 searchInput.addEventListener('keydown', event => {
   if (event.key === 'Enter') {
+    const originalPokemonName = searchInput.value.toLowerCase(); // Get current value in lowercase
+
     dynamicListElement.innerHTML = '';
     pokemonTypesElement.innerHTML = ''; // Clear previous types
-    height = jsonData[searchInput.value]['height'];
-    weight = jsonData[searchInput.value]['weight'];
-    dynamicListData = jsonData[searchInput.value]['abilities'];
-    types = jsonData[searchInput.value]['types'];
+    height = jsonData[originalPokemonName]['height'];
+    weight = jsonData[originalPokemonName]['weight'];
+    dynamicListData = jsonData[originalPokemonName]['abilities'];
+    types = jsonData[originalPokemonName]['types'];
 
     // Set height, weight, and radar chart
     pokemonHeightElement.textContent = `${height} m`;
     pokemonWeightElement.textContent = `${weight} kg`;
-    makeRadarChart(jsonData[searchInput.value]['stats'].map(stat => stat['base_stat']), searchInput.value);
+    makeRadarChart(jsonData[originalPokemonName]['stats'].map(stat => stat['base_stat']), originalPokemonName);
 
     // Populate abilities list
     dynamicListData.forEach(item => {
