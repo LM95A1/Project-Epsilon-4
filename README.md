@@ -8,13 +8,13 @@ Upon assignment of the project's requirements, we set out to create a dashboard 
 ## Component Breakdown
 Though the core of the project consists of the ***HTML***, ***CSS***, and ***JavaScript*** files, this section will cover every component of the project, listed in the following subcategories:
 
-* *[HTML](####HTML)*
-* *[CSS](####CSS)*
-* *[JavaScript](####JavaScript)*
-* *[JSON](####JSON)*
-* *[Jupyter Notebook](####Jupyter)*
-* *[SQLite](####SQLite)*
-* *[Directories](####Directories)*
+* *[HTML](#HTML)*
+* *[CSS](#CSS)*
+* *[JavaScript](#JavaScript)*
+* *[JSON](#JSON)*
+* *[Jupyter Notebook](#Jupyter)*
+* *[SQLite](#SQLite)*
+* *[Directories](#Directories)*
 
 #### HTML
 
